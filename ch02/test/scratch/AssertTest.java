@@ -16,8 +16,8 @@ import org.junit.*;
 import static scratch.PointMatcher.isNear;
 // ...
 import org.junit.rules.*;
-// ...
 
+// JUnit 단언(1. 전통 2. 햄크레스트)
 public class AssertTest {
 
    class InsufficientFundsException extends RuntimeException {
@@ -74,19 +74,23 @@ public class AssertTest {
 
    private Account account;
 
+   // @Before: 초기화 담당 
    @Before
    public void createAccount() {
       account = new Account("an account name");
    }
 
 
+   // JUnit 단언
+   // 1) assertTrue: 가장 일반적 단언 
    @Test
    public void hasPositiveBalance() {
       account.deposit(50);
       assertTrue(account.hasPositiveBalance());
    }
 
-
+   
+   // 입금후엔 잔고가 0보다 크다고 단언 
    @Test
    public void depositIncreasesBalance() {
       int initialBalance = account.getBalance();

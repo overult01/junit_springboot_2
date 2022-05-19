@@ -8,6 +8,8 @@
 ***/
 package iloveyouboss;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.*;
 
 public class ProfileTest {
@@ -31,5 +33,23 @@ public class ProfileTest {
       
       Criteria criteria = new Criteria();
       criteria.add(criterion);
+   }
+   
+   @Test
+   public void matchAnswersTrueForAnyDontCareCriteria() {
+      Profile profile = new Profile("Bull Hockey, Inc.");
+      Question question = new BooleanQuestion(1, "Got milk?");
+      Answer profileAnswer = new Answer(question, Bool.FALSE);
+      profile.add(profileAnswer);      
+      Answer criteriaAnswer = new Answer(question, Bool.TRUE);
+      
+      // 실제 대답에 대한 가중치 저장
+      Criterion criterion = new Criterion(criteriaAnswer, Weight.DontCare);
+      Criteria criteria = new Criteria();
+      criteria.add(criterion);
+
+      // 1번 테스트에서 추가된 2줄 
+      boolean matches = profile.matches(criteria);
+      assertTrue(matches);
    }
 }

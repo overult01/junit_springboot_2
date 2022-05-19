@@ -35,7 +35,7 @@ public class Profile {
       for (Criterion criterion: criteria) {   
          Answer answer = answers.get(
                criterion.getAnswer().getQuestionText()); 
-         boolean match = 
+         boolean match = // 대답이 긍정적 
                criterion.getWeight() == Weight.DontCare || 
                answer.match(criterion.getAnswer());
 

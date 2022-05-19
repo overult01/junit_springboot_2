@@ -155,7 +155,7 @@ public class AssertTest {
             equalTo(Arrays.asList(new String[] {"a", "ab"})));
    }
 
-   
+   // (비권장)단언 설명: 선택적으로 assertThat의 첫 인자로 단언 설명을 위한 message 추가가능. 하지만 테스트 코드 그 자체로 이해되게 작성하는 것이 낫다.
    @Ignore
    @Test
    public void testWithWorthlessAssertionComment() {

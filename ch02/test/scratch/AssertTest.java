@@ -245,10 +245,8 @@ public class AssertTest {
    public void location() {
       Point point = new Point(4, 5);
       
-      // WTF why do JUnit matches not include closeTo
-//      assertThat(point.x, closeTo(3.6, 0.2));
-//      assertThat(point.y, closeTo(5.1, 0.2));
-      
+      // isNear: 부동소수점 2개를 비교
+      // 컴퓨터는 부동소수점을 근사치로 계산. 따라서 equalTo대신 isNear 메서드 사용 
       assertThat(point, isNear(3.6, 5.1));
    }
    

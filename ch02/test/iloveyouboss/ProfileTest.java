@@ -8,8 +8,7 @@
 ***/
 package iloveyouboss;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.*;
 
@@ -27,13 +26,12 @@ public class ProfileTest {
 	    criteria = new Criteria();
 	}	
 	
-
    @Test
    public void matchAnswersFalseWhenMustMatchCriteriaNotMet() {
 
-	   // 준비-실행-단언(AAA) 중 1) 테스트 준비 단계(Arrange)
+	  // 준비-실행-단언(AAA) 중 1) 테스트 준비 단계(Arrange)
 	   
-	   // @Before가 대신해주는 덕분에 초기화 부분 생략 
+	  // @Before가 대신해주는 덕분에 초기화 부분 생략 
 	   
       // 질문에 대한 실제 대답 
       Answer profileAnswer = new Answer(question, Bool.FALSE);

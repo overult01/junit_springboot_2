@@ -8,8 +8,14 @@
 ***/
 package scratch;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+
+// import static org.junit.Assert.assertThat; <- depressed로 아래로 대체 
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
 import java.io.*;
 import java.util.*;
 import org.junit.*;
@@ -100,12 +106,16 @@ public class AssertTest {
       // 2) assertThat: 햄크레스트 단언. 명확한 값을 비교. 자주 사용.
       // 햄크레스트 단언 assertThat(검증하고자 하는 값, matcher)
       // matcher: 실제 값 == 표현식 값 인지 비교. 가독성 향상 목적.
-      // equalTo 매처: 자바 인스턴스, 기본형 값 모두 넣을 수 있다. (자바기본형은 오토박싱되어 어떤 타입과도 비교가능)
       // assertThat는 실패시 기댓값, 실제값을 오류 메세지로 출력해줘 유용. cf)assertTrue는 실패시 스택트레이스 출력.
+
+      // assertThat의 사용 예 1 
+      // equalTo 매처: 자바 인스턴스, 기본형 값 모두 넣을 수 있다. (자바기본형은 오토박싱되어 어떤 타입과도 비교가능)
+      // 명확한 값을 비교
       assertThat(account.getBalance(), equalTo(100));
    }
 
-   
+   // assertThat의 사용 예 2
+   // (비권장)assertThat를 boolean표현식에 assertTrue대신 사용. 상세 실패 내용 보기 위해. 
    @Test
    public void depositIncreasesBalance_hamcrestAssertTrue() {
       account.deposit(50);
@@ -152,6 +162,8 @@ public class AssertTest {
       assertTrue(account.getName().startsWith("xyz"));
    }
 
+   // assertThat의 사용 예 3
+   // CoreMatchers 클래스의 startsWith 매처를 사용 
    @Test
    @ExpectToFail
    @Ignore

@@ -15,6 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.*;
 import java.util.*;
@@ -122,18 +123,30 @@ public class AssertTest {
       assertThat(account.getBalance() > 0, is(true));
    }
    
-   @Ignore
-   @ExpectToFail
-   @Test
-   public void comparesArraysFailing() {
-      assertThat(new String[] {"a", "b", "c"}, equalTo(new String[] {"a", "b"}));
-   }
-
+   // assertThat의 사용 예 4
+   // 자바 배열, 컬렉션 객체를 비교할 때 equalTo 메서드 사용 
+   // 성공
    @Test
    public void comparesArraysPassing() {
       assertThat(new String[] {"a", "b"}, equalTo(new String[] {"a", "b"}));
    }
-
+   
+   // 성공
+   @Test
+   public void comparesCollectionsPassing() {
+	   assertThat(Arrays.asList(new String[] {"a"}), 
+			   equalTo(Arrays.asList(new String[] {"a"})));
+   }
+   
+   // 실패
+   @Ignore
+   @ExpectToFail
+   @Test
+   public void comparesArraysFailing() {
+	   assertThat(new String[] {"a", "b", "c"}, equalTo(new String[] {"a", "b"}));
+   }
+   
+   // 실패
    @Ignore
    @ExpectToFail
    @Test
@@ -142,11 +155,6 @@ public class AssertTest {
             equalTo(Arrays.asList(new String[] {"a", "ab"})));
    }
 
-   @Test
-   public void comparesCollectionsPassing() {
-      assertThat(Arrays.asList(new String[] {"a"}), 
-            equalTo(Arrays.asList(new String[] {"a"})));
-   }
    
    @Ignore
    @Test

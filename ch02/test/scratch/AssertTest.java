@@ -256,23 +256,35 @@ public class AssertTest {
       Account account = new Account("acct namex");
       assertEquals("acct name", account.getName());
    }
+
    
+   // 예외를 기대하는 3가지방법: 1) @Test 사용 2) try/catch, fail 3) ExpectedException 규칙
+   
+   // 예외를 기대하는 3가지방법
+   // 1) @Test 사용: 기대한 예외를 지정할 수 있는 인자 제공 
    @Test(expected=InsufficientFundsException.class)
    public void throwsWhenWithdrawingTooMuch() {
       account.withdraw(100);
    }
    
+   // 예외를 기대하는 3가지방법
+   // 2) (옛방식) try/catch, fail
+   // 예외가 발생하지 않으면 fail()메서드 호출하여 강제로 실패 
    @Test
    public void throwsWhenWithdrawingTooMuchTry() {
       try {
          account.withdraw(100);
          fail();
       }
+      
+      // 예외 발생하면 테스트 통과 
       catch (InsufficientFundsException expected) {
          assertThat(expected.getMessage(), equalTo("balance only 0"));
       }
    }
    
+   // 예외 무시 
+   // 검증된 예외를 처리할 땐 throws로 예외 무시 
    @Test
    public void readsFromTestFile() throws IOException {
       String filename = "test.txt";
@@ -292,18 +304,28 @@ public class AssertTest {
    public void somethingWeCannotHandleRightNow() {
       // ...
    }
-
+   
+   // 예외를 기대하는 3가지방법
+   // 3) (새로운 방식)ExpectedException 규칙
+   // 사용하려면 테스트 클래스에 ExpectedException를 public으로 선언하고 @Rule 추가해야.
    @Rule
    public ExpectedException thrown = ExpectedException.none();  
    
+   // 테스트 셋업 단계에서 나머지 테스트를 실행시 발생할 수 있는 일을 규칙에 알림 
    @Test
    public void exceptionRule() {
+	   
+	  // thrown규칙 인스턴스는 InsufficientFundsException 예외가 발생함을 알림 
       thrown.expect(InsufficientFundsException.class); 
+      
+      // 예외 객체에 적절항 메세지가 포함되어 있는지 검사 
       thrown.expectMessage("balance only 0");  
       
+      // 예외가 발생하길 기대하는 테스트 실행 
       account.withdraw(100);  
    }
    
+   // 부동소수점 비교 
    @Test
    public void doubles() {
       assertEquals(9.7, 10.0 - 0.3, 0.005);

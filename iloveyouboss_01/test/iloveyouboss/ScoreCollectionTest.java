@@ -18,6 +18,7 @@ public class ScoreCollectionTest {
 		// 실행
 		int actualResult = collection.arithmeticMean();
 		
+		// 단언문은 테스트의 가장 아래에 넣기 
 		// 단언 (Deprecated된 assertThat메서드 대체)
 		assertSame(actualResult, 6); // assertSame(Object expected, Object actual)
  

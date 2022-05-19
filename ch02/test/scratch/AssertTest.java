@@ -17,7 +17,7 @@ import static scratch.PointMatcher.isNear;
 // ...
 import org.junit.rules.*;
 
-// JUnit 단언(1. 전통 2. 햄크레스트)
+// JUnit 단언(1. 전통-assertTrue 2. 햄크레스트-assertThat)
 public class AssertTest {
 
    class InsufficientFundsException extends RuntimeException {
@@ -82,7 +82,7 @@ public class AssertTest {
 
 
    // JUnit 단언
-   // 1) assertTrue: 가장 일반적 단언 
+   // 1) assertTrue: 전통적 단언. 가장 일반적 단언 
    @Test
    public void hasPositiveBalance() {
       account.deposit(50);
@@ -96,6 +96,12 @@ public class AssertTest {
       account.deposit(100);
       // 1) assertTrue: 입금후엔 잔고가 0보다 크다고 단언 
       assertTrue(account.getBalance() > initialBalance);
+      
+      // 2) assertThat: 햄크레스트 단언. 명확한 값을 비교. 자주 사용.
+      // 햄크레스트 단언 assertThat(검증하고자 하는 값, matcher)
+      // matcher: 실제 값 == 표현식 값 인지 비교. 가독성 향상 목적.
+      // equalTo 매처: 자바 인스턴스, 기본형 값 모두 넣을 수 있다. (자바기본형은 오토박싱되어 어떤 타입과도 비교가능)
+      // assertThat는 실패시 기댓값, 실제값을 오류 메세지로 출력해줘 유용. cf)assertTrue는 실패시 스택트레이스 출력.
       assertThat(account.getBalance(), equalTo(100));
    }
 

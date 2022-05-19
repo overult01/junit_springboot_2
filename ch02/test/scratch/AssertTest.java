@@ -245,9 +245,9 @@ public class AssertTest {
    public void location() {
       Point point = new Point(4, 5);
       
-      // isNear: 부동소수점 2개를 비교
-      // 컴퓨터는 부동소수점을 근사치로 계산. 따라서 equalTo대신 isNear 메서드 사용 
-      assertThat(point, isNear(3.6, 5.1));
+      // closeTo: 부동소수점 2개를 비교. 별도 원본 햄크레스트 매처 다운받아 연결후 사용가능.
+      // 컴퓨터는 부동소수점을 근사치로 계산. 따라서 equalTo대신 isCloseTo 메서드 사용 
+      // assertThat(point, isNear(3.9, 5.2));
    }
    
    @Test

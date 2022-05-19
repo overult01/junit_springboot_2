@@ -1,8 +1,9 @@
-# unit_springboot_2
-
+# junit_springboot_2
 - 도서 '자바와 JUnit을 활용한 실용주의 단위 테스트(길벗, 2019)'을 토대로 실습하며, 학습 내용중 일부를 블로그에 정리하였습니다.
 - 자바 8, JUnit4
 
+
+# 개요
 - ch01: JUnit4 시작
   + [준비-실행-단언(AAA)](https://structuring.tistory.com/198)
 

@@ -90,11 +90,11 @@ public class AssertTest {
    }
 
    
-   // 입금후엔 잔고가 0보다 크다고 단언 
    @Test
    public void depositIncreasesBalance() {
       int initialBalance = account.getBalance();
       account.deposit(100);
+      // 1) assertTrue: 입금후엔 잔고가 0보다 크다고 단언 
       assertTrue(account.getBalance() > initialBalance);
       assertThat(account.getBalance(), equalTo(100));
    }

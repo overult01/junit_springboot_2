@@ -179,25 +179,31 @@ public class AssertTest {
       assertThat(account.getName(), startsWith("xyz"));
    }
 
+   // 햄크레스트의 중요 매처들 확인하기 
    @Test
    public void variousMatcherTests() {
       Account account = new Account("my big fat acct");
       
-      // is 장식자: 가독성을 위해 선택적으로 사용. is는 넘겨받은 매처를 반환할 뿐 아무것도 x.
+      // 1) (비권장)is 장식자: 가독성을 위해 선택적으로 사용. is는 넘겨받은 매처를 반환할 뿐 아무것도 x.
       assertThat(account.getName(), is(equalTo("my big fat acct")));
 
       assertThat(account.getName(), allOf(startsWith("my"), endsWith("acct")));
 
       assertThat(account.getName(), anyOf(startsWith("my"), endsWith("loot")));
 
+      // 2) not 매처: 어떤 것을 부정하는 단언 생성
       assertThat(account.getName(), not(equalTo("plunderings")));
 
+      // not 매처를 사용해 null 값이나 null 아닌 값을 검사하는 경우 
       assertThat(account.getName(), is(not(nullValue())));
       assertThat(account.getName(), is(notNullValue()));
 
       assertThat(account.getName(), isA(String.class));
-
-      assertThat(account.getName(), is(notNullValue())); // not helpful
+      
+      // not helpful
+      // null 인지 자주 확인할 필요는 x.
+      assertThat(account.getName(), is(notNullValue())); 
+      // null 이면 equalTo는 실행x.
       assertThat(account.getName(), equalTo("my big fat acct"));
    }
 

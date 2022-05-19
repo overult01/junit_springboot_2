@@ -182,6 +182,8 @@ public class AssertTest {
    @Test
    public void variousMatcherTests() {
       Account account = new Account("my big fat acct");
+      
+      // is 장식자: 가독성을 위해 선택적으로 사용. is는 넘겨받은 매처를 반환할 뿐 아무것도 x.
       assertThat(account.getName(), is(equalTo("my big fat acct")));
 
       assertThat(account.getName(), allOf(startsWith("my"), endsWith("acct")));
